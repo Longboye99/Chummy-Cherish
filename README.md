@@ -7,4 +7,5 @@ Team : Chummy Cherish
   -651310490 กฤตยา มาธุสรสกุล : Artist https://github.com/teddiibearo
 
   -651310351 กิจติพันธุ์ ด้วงเกตุ : Game Design https://github.com/brick5
+
 GDD First Pitch : https://www.canva.com/design/DAGbEGgy-4A/3tq_aA7gKGHDlnXxM9Uk8A/edit?utm_content=DAGbEGgy-4A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
