@@ -1,4 +1,4 @@
-![IMG_5704](https://github.com/user-attachments/assets/88e812bb-b98b-4c8a-be2b-91f9dac1814d)
+![Right_LK (1)](https://github.com/user-attachments/assets/80173f3f-24d4-4fed-95e2-0c95860ebb45)
 
 Team : Chummy Cherish
 
