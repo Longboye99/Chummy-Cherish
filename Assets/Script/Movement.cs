@@ -11,7 +11,8 @@ public class Movement : MonoBehaviour
 
     private const string _horizontal = "Horizontal";
     private const string _vertical = "Vertical";
-
+    private const string _speed = "Speed";
+    private float speed;
 
     private void Awake()
     {
@@ -25,9 +26,19 @@ public class Movement : MonoBehaviour
         _movement.Set(Inputmg.Movement.x, Inputmg.Movement.y);
 
         _rb.linearVelocity = _movement * _moveSpeed;
+        speed = Vector3.Magnitude(_rb.linearVelocity);
 
-        _animator.SetFloat(_horizontal, _movement.x);
-        _animator.SetFloat(_vertical, _movement.y);
+        if (_movement.x != 0 || _movement.y != 0)
+        {
+            
+            _animator.SetFloat(_horizontal, _movement.x);
+            _animator.SetFloat(_vertical, _movement.y);
+            _animator.SetFloat(_speed, speed);
+        }
+        else
+        {
+            _animator.SetFloat(_speed, 0);
+        }
 
 
     }
