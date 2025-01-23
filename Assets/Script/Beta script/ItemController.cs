@@ -43,7 +43,7 @@ public class ItemController : MonoBehaviour
         if (Equipped != null)
         {
             Destroy(Equipped);
-            GameObject droppedAsWorldItem = Instantiate(EquipedInfo.WorldPrefab, transform.position, Quaternion.identity);
+            GameObject droppedAsWorldItem = Instantiate(EquipedInfo.WorldPrefab, Socket.transform.position, Quaternion.identity);
             Debug.Log($"{EquipedInfo.Label} dropped");
             Equipped = null;
             EquipedInfo = null;
