@@ -22,13 +22,12 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        _movement.Set(Inputmg.Movement.x, Inputmg.Movement.y); 
+        _movement.Set(Inputmg.Movement.x, Inputmg.Movement.y);
 
-        _rb.velocity = _movement * _moveSpeed;
+        _rb.linearVelocity = _movement * _moveSpeed;
 
         _animator.SetFloat(_horizontal, _movement.x);
         _animator.SetFloat(_vertical, _movement.y);
-
 
 
     }
