@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
-    public ItemDefinition Definition;
+    public ItemDefinitionSO Definition;
 }

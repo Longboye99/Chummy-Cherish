@@ -10,15 +10,38 @@ public class ItemController : MonoBehaviour
     public Transform Socket = null;// picked up items goes here
 
     [Header("Read-Only fields")]
-    public ItemDefinition EquipedInfo = null;
+    public ItemDefinitionSO EquipedInfo = null;
+    public string ItemId = null;
     public GameObject Equipped = null;
     public List<ItemWorld> Contacts = new List<ItemWorld>();
-    private Rigidbody2D _rb;
+    private Rigidbody2D rb;
 
+
+    private void Start()
+    {
+        GameEventsManager.instance.inputEvents.onItemEquipped += Equip;
+        GameEventsManager.instance.inputEvents.onItemUnequipped += Unequip;
+    }
+
+    private void OnDestroy()
+    {
+        GameEventsManager.instance.inputEvents.onItemEquipped -= Equip;
+        GameEventsManager.instance.inputEvents.onItemUnequipped -= Unequip;
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) Equip();
-        if (Input.GetKeyDown(KeyCode.Q)) Unequip();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(Equipped != null)
+            {
+                Unequip();
+            }
+            else
+            {
+                Equip();
+            }
+
+        }
     }
 
     void Equip()
@@ -26,16 +49,18 @@ public class ItemController : MonoBehaviour
         if (Contacts.Count != 0)
         {
             ItemWorld worldItem = Contacts[0];
-            ItemDefinition worldItemInfo = worldItem.Definition;
+            ItemDefinitionSO worldItemInfo = worldItem.Definition;
             Destroy(worldItem.gameObject);
             if (Equipped != null) Unequip();
             Equipped = Instantiate(worldItemInfo.PlayerPrefab, Socket);
             Equipped.transform.localPosition = Vector3.zero;
             Equipped.transform.localRotation = Quaternion.identity;
             EquipedInfo = worldItemInfo;
-            Debug.Log($"{EquipedInfo.Label} equipped");
+            ItemId = worldItemInfo.id;
+            GameEventsManager.instance.inputEvents.Equip();
+            Debug.Log($"ItemController : {EquipedInfo.Label} equipped");
         }
-        else Debug.Log("no items to equip");
+        else Debug.Log("ItemController : no items to equip");
     }
 
     void Unequip()
@@ -43,12 +68,15 @@ public class ItemController : MonoBehaviour
         if (Equipped != null)
         {
             Destroy(Equipped);
-            GameObject droppedAsWorldItem = Instantiate(EquipedInfo.WorldPrefab, Socket.transform.position, Quaternion.identity);
-            Debug.Log($"{EquipedInfo.Label} dropped");
+            GameObject droppedAsWorldItem = Instantiate(EquipedInfo.WorldPrefab, transform.position, Quaternion.identity);
+            Debug.Log($"ItemController : {EquipedInfo.Label} dropped");
             Equipped = null;
             EquipedInfo = null;
+            ItemId = null;
+            GameEventsManager.instance.inputEvents.Unequip();
+
         }
-        else Debug.Log("nothing to unequip");
+        else Debug.Log("ItemController : nothing to unequip");
     }
 
     void OnTriggerEnter2D(Collider2D collision)

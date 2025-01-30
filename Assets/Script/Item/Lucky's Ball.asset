@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb62dada9c0869c4ea5c646dcbfbb378, type: 3}
-  m_Name: ItemDefinition
+  m_Name: Lucky's Ball
   m_EditorClassIdentifier: 
-  Label: player-facing name of this object
+  <id>k__BackingField: Lucky's Ball
+  Label: Lucky's Ball
   PlayerPrefab: {fileID: 8199346650217949, guid: b947a06e16078ef4694cf7df7764f8bc, type: 3}
   WorldPrefab: {fileID: 8199346650217949, guid: b947a06e16078ef4694cf7df7764f8bc, type: 3}
