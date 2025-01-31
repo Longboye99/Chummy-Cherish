@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class SocketPosiotion : MonoBehaviour
 {
+    [SerializeField] private Vector2 positionUp;
+    [SerializeField] private Vector2 positionSide = new Vector2(0.1f, 0);
+    [SerializeField] private Vector2 positionDown;
     private void Start()
     {
         GameEventsManager.instance.inputEvents.onMovePressed += MovePressed;
@@ -21,19 +24,19 @@ public class SocketPosiotion : MonoBehaviour
     {
         if (moveDir.x > 0)
         {
-            this.transform.localPosition = new Vector2(0.1f, 0);
+            this.transform.localPosition = positionSide;
         }
         if (moveDir.x < 0)
         {
-            this.transform.localPosition = new Vector2(-0.1f, 0);
+            this.transform.localPosition = -positionSide;
         }
         if (moveDir.y > 0 && moveDir.x == 0)
         {
-            this.transform.localPosition = new Vector2(0, 0.1f);
+            this.transform.localPosition = new Vector2(0, -1000f);
         }
         if (moveDir.y < 0 && moveDir.x == 0)
         {
-            this.transform.localPosition = new Vector2(0, -0.1f);
+            this.transform.localPosition = positionDown;
 
         }
     }

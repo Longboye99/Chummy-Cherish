@@ -1,39 +1,68 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class SmellHandler : MonoBehaviour
 {
-    [SerializeField] GameObject targetSmell;
+    [SerializeField]  GameObject targetSmell;
+    [SerializeField] GameObject smellPointer;
+    [SerializeField] float hideDistance;
+
     internal Vector2 direction;
     internal float angle;
-    [SerializeField] float hideDistance;
+    private float skillTime = 0;
+    private bool usingSkill = false;
+    private SpriteRenderer targetSprite;
+    private Color oldColor;
+    private bool oldSpriteEnable;
 
     private void OnEnable()
     {
         GameEventsManager.instance.inputEvents.onSmelling += Smelling;
+        smellPointer.SetActive(false);
+
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.inputEvents.onSmelling -= Smelling;
-
     }
 
     void Update () 
     {
-        direction = targetSmell.transform.position - transform.position;
-        if (direction.magnitude < hideDistance)
+        
+        if (usingSkill)
         {
-            SetChildActive(false);
-        }
-        else
-        {
-            SetChildActive(true);
+            if(targetSmell != null)
+            {
+                smellPointer.SetActive(true);
+                GetObjectDirection();
+                GameEventsManager.instance.playerEvents.DisablePlayerMovement();
+                
 
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0, 0, angle);
-        }
+                skillTime = skillTime + Time.deltaTime;
 
+                if (skillTime >= 1.5)
+                {
+                    usingSkill = false;
+                    smellPointer.SetActive(false);
+                    UnlitTarget();
+                    Debug.Log("Stop Smelling");
+                    GameEventsManager.instance.playerEvents.EnablePlayerMovement();
+                    skillTime = 0;
+                    
+                }
+            }
+            else
+            {
+                usingSkill = false;
+                smellPointer.SetActive(false);
+
+                GameEventsManager.instance.playerEvents.EnablePlayerMovement();
+            }
+            
+
+        }
     }
     void SetChildActive(bool value)
     {
@@ -45,8 +74,53 @@ public class SmellHandler : MonoBehaviour
 
     private void Smelling()
     {
+        usingSkill = true;
+        if(targetSmell != null)
+        {
+            SetTargetLit();
+        }
+        
+        Debug.Log("Lucky is smelling");
+    }
 
-        
-        
+    private void GetObjectDirection()
+    {
+            direction = targetSmell.transform.position - transform.position;
+            if (direction.magnitude < hideDistance)
+            {
+                SetChildActive(false);
+            }
+            else
+            {
+                SetChildActive(true);
+
+                angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0, 0, angle);
+            }
+       
+    }
+
+    public void SetTargetSmell(GameObject targetObject)
+    {
+        targetSmell = targetObject;
+    }
+
+    public void SetTargetLit()
+    {
+        targetSprite = targetSmell.gameObject.GetComponent<SpriteRenderer>();
+        oldColor = targetSprite.color;
+        oldSpriteEnable = targetSprite.enabled;
+        Debug.Log(oldColor + " , " + oldSpriteEnable);
+        targetSprite.enabled = true;
+        targetSprite.color = new Color(1, 1, 1, 0.5f);
+    }
+
+    public void UnlitTarget()
+    {
+        targetSprite = targetSmell.gameObject.GetComponent<SpriteRenderer>();
+
+        targetSprite.enabled = oldSpriteEnable;
+        targetSprite.color = oldColor;
+        targetSprite = null;
     }
 }

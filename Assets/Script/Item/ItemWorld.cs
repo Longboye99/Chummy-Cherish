@@ -6,4 +6,9 @@ using UnityEngine;
 public class ItemWorld : MonoBehaviour
 {
     public ItemDefinitionSO Definition;
+
+    private void OnEnable()
+    {
+        transform.position = transform.position + Vector3.zero;
+    }
 }

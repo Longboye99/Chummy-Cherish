@@ -3,13 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class ColorBlindArea : MonoBehaviour
 {
-    [SerializeField] string baseColor;
+    [SerializeField] string colorblindColor;
     private SpriteRenderer enteringObjectSprite;
+
 
     private void OnTriggerEnter2D(Collider2D otherCollider)
     {
         enteringObjectSprite = otherCollider.gameObject.GetComponent<SpriteRenderer>();
-        if (otherCollider.CompareTag(baseColor))
+
+        //Debug.Log(otherCollider.name + " :has entered grass area");
+
+        if (otherCollider.CompareTag(colorblindColor))
         {
             enteringObjectSprite.enabled = false;
         }
@@ -18,7 +22,10 @@ public class ColorBlindArea : MonoBehaviour
     private void OnTriggerExit2D(Collider2D otherCollider)
     {
         enteringObjectSprite = otherCollider.gameObject.GetComponent<SpriteRenderer>();
-        if (otherCollider.CompareTag(baseColor))
+
+        //Debug.Log(otherCollider.name + " :has exited grass area");
+
+        if (otherCollider.CompareTag(colorblindColor))
         {
             enteringObjectSprite.enabled = true;
         }

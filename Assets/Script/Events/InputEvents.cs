@@ -53,6 +53,7 @@ public class InputEvents
         if (onSmelling != null)
         {
             onSmelling();
+            Debug.Log("InputEvent Smelling");
         }
     }
 }
