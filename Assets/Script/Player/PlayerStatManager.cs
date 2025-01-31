@@ -20,8 +20,7 @@ public class PlayerStatManager : MonoBehaviour
         
             currentStamina -= staminaDrain * Time.deltaTime;
             staminaSlider.value = currentStamina;
-            Debug.Log(currentStamina);
-        
+
     }
 
 }

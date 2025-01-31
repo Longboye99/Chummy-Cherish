@@ -17,7 +17,7 @@ public class QuestEvents
     {
         if (onAdvanceQuest != null)
         {
-            AdvanceQuest(id);
+            onAdvanceQuest(id);
         }
     }
 
@@ -26,7 +26,7 @@ public class QuestEvents
     {
         if (onFinishQuest != null)
         {
-            FinishQuest(id);
+            onFinishQuest(id);
         }
     }
 
@@ -35,7 +35,7 @@ public class QuestEvents
     {
         if (onQuestStateChange != null)
         {
-            QuestStateChange(quest);
+            onQuestStateChange(quest);
         }
     }
 }

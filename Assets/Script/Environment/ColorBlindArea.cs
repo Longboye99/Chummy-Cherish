@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class ColorBlind : MonoBehaviour
+public class ColorBlindArea : MonoBehaviour
 {
     [SerializeField] string baseColor;
     private SpriteRenderer enteringObjectSprite;

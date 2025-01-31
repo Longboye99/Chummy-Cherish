@@ -37,4 +37,22 @@ public class InputEvents
             onItemUnequipped();
         }
     }
+
+    public event Action onInteract;
+    public void Interact()
+    {
+        if (onInteract != null)
+        {
+            onInteract();
+        }
+    }
+
+    public event Action onSmelling;
+    public void Smelling()
+    {
+        if (onSmelling != null)
+        {
+            onSmelling();
+        }
+    }
 }

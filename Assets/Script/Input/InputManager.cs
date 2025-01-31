@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void onItemEquipped(InputAction.CallbackContext context)
+    public void ItemEquipped(InputAction.CallbackContext context)
     {
         if (context.started)
         {
@@ -19,11 +19,27 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void onItemUnequipped(InputAction.CallbackContext context)
+    public void ItemUnequipped(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             GameEventsManager.instance.inputEvents.Unequip();
+        }
+    }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            GameEventsManager.instance.inputEvents.Interact();
+        }
+    }
+
+    public void Smell(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            GameEventsManager.instance.inputEvents.Smelling();
         }
     }
 }

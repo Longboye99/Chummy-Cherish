@@ -8,10 +8,21 @@ public class SmellHandler : MonoBehaviour
     internal float angle;
     [SerializeField] float hideDistance;
 
+    private void OnEnable()
+    {
+        GameEventsManager.instance.inputEvents.onSmelling += Smelling;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.inputEvents.onSmelling -= Smelling;
+
+    }
+
     void Update () 
     {
         direction = targetSmell.transform.position - transform.position;
-        if( direction.magnitude < hideDistance)
+        if (direction.magnitude < hideDistance)
         {
             SetChildActive(false);
         }
@@ -30,5 +41,12 @@ public class SmellHandler : MonoBehaviour
         {
             child.gameObject.SetActive(value);
         }
+    }
+
+    private void Smelling()
+    {
+
+        
+        
     }
 }
