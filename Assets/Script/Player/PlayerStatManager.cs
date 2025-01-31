@@ -57,6 +57,10 @@ public class PlayerStatManager : MonoBehaviour
             isSleeping = true;
             GameEventsManager.instance.playerEvents.DisablePlayerMovement();
         }
+        else
+        {
+            isSleeping = false;
+        }
     }
 
     private void UpdateStamina()
