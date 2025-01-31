@@ -73,7 +73,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -87,7 +87,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 23
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -144,7 +144,7 @@ TextureImporter:
         width: 14
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -166,7 +166,7 @@ TextureImporter:
         width: 10
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -188,7 +188,7 @@ TextureImporter:
         width: 12
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,7 +210,7 @@ TextureImporter:
         width: 11
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -232,7 +232,7 @@ TextureImporter:
         width: 133
         height: 190
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_5"
       rect:
         serializedVersion: 2
-        x: 7
-        y: 127
-        width: 26
-        height: 26
+        x: 8
+        y: 128
+        width: 24
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_6"
       rect:
         serializedVersion: 2
-        x: 39
-        y: 127
-        width: 26
-        height: 26
+        x: 40
+        y: 128
+        width: 24
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,12 +293,12 @@ TextureImporter:
       name: "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_7"
       rect:
         serializedVersion: 2
-        x: 7
-        y: 95
-        width: 26
-        height: 26
+        x: 8
+        y: 96
+        width: 24
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -315,12 +315,12 @@ TextureImporter:
       name: "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_8"
       rect:
         serializedVersion: 2
-        x: 39
-        y: 95
-        width: 26
-        height: 26
+        x: 40
+        y: 96
+        width: 24
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -337,12 +337,12 @@ TextureImporter:
       name: "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_9"
       rect:
         serializedVersion: 2
-        x: 71
-        y: 95
-        width: 26
-        height: 26
+        x: 72
+        y: 96
+        width: 24
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -364,7 +364,7 @@ TextureImporter:
         width: 41
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -381,12 +381,12 @@ TextureImporter:
       name: "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_11"
       rect:
         serializedVersion: 2
-        x: 55
-        y: 46
-        width: 36
-        height: 44
+        x: 56
+        y: 47
+        width: 34
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -408,7 +408,7 @@ TextureImporter:
         width: 102
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -425,7 +425,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cf33b0c8aaf3d9b498084ed3d38ac4c5
     internalID: 0
     vertices: []
     indices: 
@@ -434,7 +434,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_0": -5266085819367433534
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_1": 7187179186278053536
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_10": 7955577745281958438
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_11": 5930480292977479190
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_12": 810600080411079855
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_2": -8355352737951192779
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_3": 7092883017768194847
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_4": 4322188985680187550
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_5": 3525302329655519553
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_6": 4559521717568603570
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_7": -598513601837989669
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_8": 3663292715287140404
+      "2 \u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E22\u0E32\u0E22(1)_9": -2470268777661431597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
