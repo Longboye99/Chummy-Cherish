@@ -8,6 +8,7 @@ public class GameEventsManager:MonoBehaviour
     public PlayerEvents playerEvents;
     public ItemEvents itemEvents;
     public QuestEvents questEvents;
+    public LevelEvents levelEvents;
 
     private void Awake()
     {
@@ -22,5 +23,6 @@ public class GameEventsManager:MonoBehaviour
         playerEvents = new PlayerEvents();
         itemEvents = new ItemEvents();
         questEvents = new QuestEvents();
+        levelEvents = new LevelEvents();
     }
 }

@@ -21,4 +21,22 @@ public class PlayerEvents
         }
     }
 
+    public event Action<Transform> onPlayerSpawned;
+    public void PlayerSpawned(Transform defaultSpawnTransform)
+    {
+        if (onPlayerSpawned != null)
+        {
+            onPlayerSpawned(defaultSpawnTransform);
+        }
+    }
+
+    public event Action onPlayerDespawned;
+    public void PlayerDespawned()
+    {
+        if (onPlayerDespawned != null)
+        {
+            onPlayerDespawned();
+        }
+    }
+
 }
