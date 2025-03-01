@@ -6,7 +6,8 @@ public class DayNightCycle : MonoBehaviour
 {
     public float second;
     public float dayLimit = 1200;
-    public float tick;
+    public float defaultTick;
+    public float currentTick;
     public GameObject postProcessing;
     public Volume volume;
     public TextMeshProUGUI timeDisplay;
@@ -16,11 +17,18 @@ public class DayNightCycle : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEventsManager.instance.playerEvents.onPlayerSleeping += SpeedUpTime;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.instance.playerEvents.onPlayerSleeping -= SpeedUpTime;
 
     }
     private void Start()
     {
         volume = postProcessing.GetComponent<Volume>();
+        currentTick = defaultTick;
     }
 
     private void FixedUpdate()
@@ -30,7 +38,7 @@ public class DayNightCycle : MonoBehaviour
 
     private void UpdateTime()
     {
-        second += Time.fixedDeltaTime * tick;
+        second += Time.fixedDeltaTime * currentTick;
         if(second >= dayLimit)
         {
             GameEventsManager.instance.playerEvents.Fainted();
@@ -81,5 +89,14 @@ public class DayNightCycle : MonoBehaviour
     private void DisplayTime()
     {
         timeDisplay.text = second.ToString();
+    }
+
+    private void SpeedUpTime(bool isSleeping)
+    {
+        if (isSleeping)
+        {
+            currentTick = defaultTick * 10;
+        }
+        else { currentTick = defaultTick; }
     }
 }

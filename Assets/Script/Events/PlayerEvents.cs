@@ -21,12 +21,12 @@ public class PlayerEvents
         }
     }
 
-    public event Action<GameObject, GameObject> onPlayerTeleport;
-    public void TeleportPlayer(GameObject currentArea, GameObject newArea)
+    public event Action<bool> onPlayerSleeping;
+    public void PlayerSleeping(bool isSleeping)
     {
-        if (onPlayerTeleport != null)
+        if (onPlayerSleeping != null)
         {
-            onPlayerTeleport(currentArea, newArea);
+            onPlayerSleeping(isSleeping);
         }
     }
 

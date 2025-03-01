@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SocketPosiotion : MonoBehaviour
+public class SocketPosition : MonoBehaviour
 {
     [SerializeField] private Vector2 positionUp;
     [SerializeField] private Vector2 positionLeft = new Vector2(0.1f, 0);

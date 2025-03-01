@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject spawnPointCam;
     private GameObject player;
     private Animator animator;
-    private bool isSleeping;
+    private bool isSleeping = false;
 
     private void OnEnable()
     {
@@ -36,7 +36,6 @@ public class PlayerManager : MonoBehaviour
         staminaSlider.maxValue = maxStamina;
         staminaSlider.value = maxStamina;
         currentStamina = maxStamina;
-        isSleeping = false;
         player = GameObject.FindGameObjectWithTag("Player");
         animator = player.GetComponent<Animator>();
     }
@@ -58,10 +57,13 @@ public class PlayerManager : MonoBehaviour
         {
             isSleeping = true;
             GameEventsManager.instance.playerEvents.DisablePlayerMovement();
+            GameEventsManager.instance.playerEvents.PlayerSleeping(true);
         }
         else
         {
             isSleeping = false;
+            GameEventsManager.instance.playerEvents.PlayerSleeping(false);
+
         }
     }
 
@@ -104,15 +106,22 @@ public class PlayerManager : MonoBehaviour
             {
                 isSleeping = false;
                 GameEventsManager.instance.playerEvents.EnablePlayerMovement();
-
+                GameEventsManager.instance.playerEvents.PlayerSleeping(false);
             }
         }     
     }
     
     private void Fainted()
     {
-        spawnPointCam.SetActive(true);
-        player.GetComponent<Rigidbody2D>().transform.position = respawnPoint.transform.position;
-        currentStamina = maxStamina - 40;
+        if(!isSleeping)
+        {
+            spawnPointCam.SetActive(true);
+            player.GetComponent<Rigidbody2D>().transform.position = respawnPoint.transform.position;
+            currentStamina = maxStamina - 40;
+        }
+        else
+        {
+            currentStamina = maxStamina;
+        }
     }
 }

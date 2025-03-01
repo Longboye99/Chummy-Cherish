@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Equp",
+                    "name": "Equip",
                     "type": "Button",
                     "id": "3a47df89-af8f-49ab-a75d-25526f08ca70",
                     "expectedControlType": "",
@@ -147,7 +147,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Equp",
+                    "action": "Equip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

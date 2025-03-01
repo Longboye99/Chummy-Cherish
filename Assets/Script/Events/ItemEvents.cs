@@ -15,7 +15,7 @@ public class ItemEvents
     public event Action<ItemDefinitionSO> onUnequipItem;
     public void UnequipItem(ItemDefinitionSO id)
     {
-        if (onEquipItem != null)
+        if (onUnequipItem != null)
         {
             onUnequipItem(id);
         }
