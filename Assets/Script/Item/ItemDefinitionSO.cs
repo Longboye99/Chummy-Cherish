@@ -16,4 +16,6 @@ public class ItemDefinitionSO : ScriptableObject
 #endif
     }
     public ItemColor color;
+    public bool isFood;
+    public float staminaAmount;
 }

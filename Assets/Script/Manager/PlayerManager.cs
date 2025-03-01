@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
         GameEventsManager.instance.inputEvents.onInteract += Interact;
         GameEventsManager.instance.inputEvents.onMovePressed += MovePressed;
         GameEventsManager.instance.playerEvents.onFainted += Fainted;
+        GameEventsManager.instance.playerEvents.onIncreaseStamina += IncreaseStamina;
     }
 
     private void OnDisable()
@@ -28,6 +29,7 @@ public class PlayerManager : MonoBehaviour
         GameEventsManager.instance.inputEvents.onInteract -= Interact;
         GameEventsManager.instance.inputEvents.onMovePressed -= MovePressed;
         GameEventsManager.instance.playerEvents.onFainted -= Fainted;
+        GameEventsManager.instance.playerEvents.onIncreaseStamina -= IncreaseStamina;
 
     }
 
@@ -91,6 +93,11 @@ public class PlayerManager : MonoBehaviour
         {
             currentStamina = maxStamina;
         }
+    }
+
+    private void IncreaseStamina(float amount)
+    {
+        currentStamina += amount;
     }
 
     private void UpdateAnimation()

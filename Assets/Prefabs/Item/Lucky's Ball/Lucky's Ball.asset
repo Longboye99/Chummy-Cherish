@@ -17,3 +17,5 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 1846930497830338169, guid: 4fba8ab5c3177064c8d2581226886904, type: 3}
   WorldPrefab: {fileID: 1846930497830338169, guid: d159e3e8e6bb8334cb9bf0fad7b3c5cd, type: 3}
   color: 0
+  isFood: 0
+  staminaAmount: 0

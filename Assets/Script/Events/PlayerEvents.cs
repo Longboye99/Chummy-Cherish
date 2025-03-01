@@ -39,6 +39,15 @@ public class PlayerEvents
         }
     }
 
+    public event Action<float> onIncreaseStamina;
+    public void IncreaseStamina(float amount)
+    {
+        if (onIncreaseStamina != null)
+        {
+            onIncreaseStamina(amount);
+        }
+    }
+
     public event Action onFainted;
     public void Fainted()
     {

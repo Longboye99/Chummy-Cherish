@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: DogTreat
   m_EditorClassIdentifier: 
   <id>k__BackingField: DogTreat
-  Label: Dog treat
+  Label: Dog Treat
   PlayerPrefab: {fileID: 0}
-  WorldPrefab: {fileID: 0}
+  WorldPrefab: {fileID: 1865602441836314877, guid: abe987b2db24ce046a4330e7935515dd, type: 3}
   color: 0
+  isFood: 1
+  staminaAmount: 20

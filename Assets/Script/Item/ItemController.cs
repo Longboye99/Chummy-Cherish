@@ -40,13 +40,21 @@ public class ItemController : MonoBehaviour
 
             if (Equipped != null) Unequip();
 
-            Equipped = Instantiate(worldItemInfo.PlayerPrefab, Socket);
-            Equipped.transform.localPosition = Vector3.zero;
-            Equipped.transform.localRotation = Quaternion.identity;
-            EquipedInfo = worldItemInfo;
-            ItemId = worldItemInfo.id;
-            GameEventsManager.instance.itemEvents.EquipItem(EquipedInfo);
-            Debug.Log($"ItemController : {EquipedInfo.Label} equipped");
+            if (worldItemInfo.isFood)
+            {
+                GameEventsManager.instance.playerEvents.IncreaseStamina(worldItemInfo.staminaAmount);
+                Debug.Log("Recovered Stamina: " +  worldItemInfo.staminaAmount);
+            }
+            else
+            {
+                Equipped = Instantiate(worldItemInfo.PlayerPrefab, Socket);
+                Equipped.transform.localPosition = Vector3.zero;
+                Equipped.transform.localRotation = Quaternion.identity;
+                EquipedInfo = worldItemInfo;
+                ItemId = worldItemInfo.id;
+                GameEventsManager.instance.itemEvents.EquipItem(EquipedInfo);
+                Debug.Log($"ItemController : {EquipedInfo.Label} equipped");
+            }
         }
         else Debug.Log("ItemController : no items to equip");
     }

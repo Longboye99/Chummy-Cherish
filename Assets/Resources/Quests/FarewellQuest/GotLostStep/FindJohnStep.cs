@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GotLostStep : MonoBehaviour
+public class FindJohnStep : QuestStep
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

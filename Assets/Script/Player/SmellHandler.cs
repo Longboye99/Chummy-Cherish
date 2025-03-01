@@ -35,14 +35,12 @@ public class SmellHandler : MonoBehaviour
     {
         
         if (usingSkill)
-        {
-            if(targetSmell != null)
+        {         
+            if (targetSmell != null)
             {
                 smellPointer.SetActive(true);
                 GetObjectDirection();
                 GameEventsManager.instance.playerEvents.DisablePlayerMovement();
-                
-
                 skillTime = skillTime + Time.deltaTime;
 
                 if (skillTime >= 1.5)
@@ -53,24 +51,15 @@ public class SmellHandler : MonoBehaviour
                     Debug.Log("Stop Smelling");
                     GameEventsManager.instance.playerEvents.EnablePlayerMovement();
                     skillTime = 0;
-                    
                 }
             }
             else
             {
                 usingSkill = false;
                 smellPointer.SetActive(false);
-
                 GameEventsManager.instance.playerEvents.EnablePlayerMovement();
             }
-            
-
         }
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateTargetSmell();
     }
 
     void SetChildActive(bool value)
@@ -83,10 +72,13 @@ public class SmellHandler : MonoBehaviour
 
     private void Smelling()
     {
-        usingSkill = true;
-        if(targetSmell != null)
+        UpdateTargetSmell();
+
+        if (targetSmell != null)
         {
+            
             SetTargetLit();
+            usingSkill = true;
         }
         
         Debug.Log("Lucky is smelling");
@@ -118,20 +110,20 @@ public class SmellHandler : MonoBehaviour
     {
         GameObject[] items;
         items = GameObject.FindGameObjectsWithTag("Item");
-        GameObject closetItem = null;
-        float distance = 100;
+        GameObject closestItem = null;
+        float distance = 10000;
         foreach (GameObject item in items)
         {
             float curDistance = (item.transform.position - this.transform.position).sqrMagnitude;
             if (curDistance < distance)
             {
-                closetItem = item;
+                closestItem = item;
                 distance = curDistance;
             }
         }
-        if (closetItem != null)
+        if (closestItem != null)
         {
-            GameEventsManager.instance.playerEvents.SetTargetSmell(closetItem);
+            GameEventsManager.instance.playerEvents.SetTargetSmell(closestItem);
         }
     }
 
@@ -144,6 +136,7 @@ public class SmellHandler : MonoBehaviour
         Debug.Log(oldColor + " , " + oldSpriteEnable);
         targetSprite.enabled = true;
         targetSprite.color = new Color(1, 1, 1, 0.5f);
+        Debug.Log("Lit: " + targetSmell.name);
     }
 
     public void UnlitTarget()
@@ -153,5 +146,7 @@ public class SmellHandler : MonoBehaviour
         targetSprite.enabled = oldSpriteEnable;
         targetSprite.color = oldColor;
         targetSprite = null;
+        Debug.Log("Unlit: " + targetSmell.name);
+
     }
 }
