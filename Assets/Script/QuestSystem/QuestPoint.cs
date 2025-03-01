@@ -9,6 +9,8 @@ public class QuestPoint : MonoBehaviour
     [Header("Config")]
     [SerializeField] private bool startPoint = true;
     [SerializeField] private bool finishPoint = true;
+    [SerializeField] private bool startInteract = true;
+    [SerializeField] private bool finishInteract = true;
 
     private bool playerIsNear = false;
     private string questId;
@@ -41,11 +43,11 @@ public class QuestPoint : MonoBehaviour
         {
             return;
         }
-        if(currentQuestState.Equals(QuestState.CAN_START) && startPoint) 
+        if(currentQuestState.Equals(QuestState.CAN_START) && startPoint && startInteract) 
         {
             GameEventsManager.instance.questEvents.StartQuest(questId);
         }
-        else if(currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
+        else if(currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint && finishInteract)
         {
             GameEventsManager.instance.questEvents.FinishQuest(questId);
         }
@@ -57,6 +59,14 @@ public class QuestPoint : MonoBehaviour
         if(otherCollider.CompareTag("Player")) 
         { 
             playerIsNear = true;
+            if (currentQuestState.Equals(QuestState.CAN_START) && startPoint && !startInteract)
+            {
+                GameEventsManager.instance.questEvents.StartQuest(questId);
+            }
+            else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint && !finishInteract)
+            {
+                GameEventsManager.instance.questEvents.FinishQuest(questId);
+            }
         }
     }
 
@@ -74,7 +84,11 @@ public class QuestPoint : MonoBehaviour
         {
             currentQuestState = quest.state;
             Debug.Log("Quest " + questId + " update to state: " + currentQuestState);
-            questIcon.SetState(currentQuestState, startPoint, finishPoint);
+            if(questIcon != null)
+            {
+                questIcon.SetState(currentQuestState, startPoint, finishPoint);
+            }
+            
         }
     }
 }

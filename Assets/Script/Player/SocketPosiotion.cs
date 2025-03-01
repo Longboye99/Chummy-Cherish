@@ -3,7 +3,8 @@ using UnityEngine;
 public class SocketPosiotion : MonoBehaviour
 {
     [SerializeField] private Vector2 positionUp;
-    [SerializeField] private Vector2 positionSide = new Vector2(0.1f, 0);
+    [SerializeField] private Vector2 positionLeft = new Vector2(0.1f, 0);
+    [SerializeField] private Vector2 positionRight = new Vector2(0.1f, 0);
     [SerializeField] private Vector2 positionDown;
     private void Start()
     {
@@ -24,11 +25,11 @@ public class SocketPosiotion : MonoBehaviour
     {
         if (moveDir.x > 0)
         {
-            this.transform.localPosition = positionSide;
+            this.transform.localPosition = positionRight;
         }
         if (moveDir.x < 0)
         {
-            this.transform.localPosition = -positionSide;
+            this.transform.localPosition = positionLeft;
         }
         if (moveDir.y > 0 && moveDir.x == 0)
         {

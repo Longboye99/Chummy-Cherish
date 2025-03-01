@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class SmellHandler : MonoBehaviour
 {
-    [SerializeField]  GameObject targetSmell;
+    [SerializeField] GameObject targetSmell;
     [SerializeField] GameObject smellPointer;
     [SerializeField] float hideDistance;
 
@@ -19,6 +19,7 @@ public class SmellHandler : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.instance.inputEvents.onSmelling += Smelling;
+        GameEventsManager.instance.playerEvents.onSetTargetSmell += SetTargetSmell;
         smellPointer.SetActive(false);
 
     }
@@ -26,6 +27,8 @@ public class SmellHandler : MonoBehaviour
     private void OnDisable()
     {
         GameEventsManager.instance.inputEvents.onSmelling -= Smelling;
+        GameEventsManager.instance.playerEvents.onSetTargetSmell -= SetTargetSmell;
+
     }
 
     void Update () 
@@ -64,6 +67,12 @@ public class SmellHandler : MonoBehaviour
 
         }
     }
+
+    private void FixedUpdate()
+    {
+        UpdateTargetSmell();
+    }
+
     void SetChildActive(bool value)
     {
         foreach (Transform child in transform)
@@ -104,6 +113,28 @@ public class SmellHandler : MonoBehaviour
     {
         targetSmell = targetObject;
     }
+
+    private void UpdateTargetSmell()
+    {
+        GameObject[] items;
+        items = GameObject.FindGameObjectsWithTag("Item");
+        GameObject closetItem = null;
+        float distance = 100;
+        foreach (GameObject item in items)
+        {
+            float curDistance = (item.transform.position - this.transform.position).sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closetItem = item;
+                distance = curDistance;
+            }
+        }
+        if (closetItem != null)
+        {
+            GameEventsManager.instance.playerEvents.SetTargetSmell(closetItem);
+        }
+    }
+
 
     public void SetTargetLit()
     {

@@ -15,5 +15,5 @@ public class ItemDefinitionSO : ScriptableObject
         UnityEditor.EditorUtility.SetDirty(this);
 #endif
     }
-    // public float Damage;// etc
+    public ItemColor color;
 }

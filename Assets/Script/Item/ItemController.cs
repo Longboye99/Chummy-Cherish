@@ -28,36 +28,24 @@ public class ItemController : MonoBehaviour
         GameEventsManager.instance.inputEvents.onItemEquipped -= Equip;
         GameEventsManager.instance.inputEvents.onItemUnequipped -= Unequip;
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if(Equipped != null)
-            {
-                Unequip();
-            }
-            else
-            {
-                Equip();
-            }
-
-        }
-    }
 
     void Equip()
     {
-        if (Contacts.Count != 0)
+        if (Equipped != null &&  Contacts.Count == 0) Unequip();
+        else if (Contacts.Count != 0)
         {
             ItemWorld worldItem = Contacts[0];
             ItemDefinitionSO worldItemInfo = worldItem.Definition;
             Destroy(worldItem.gameObject);
+
             if (Equipped != null) Unequip();
+
             Equipped = Instantiate(worldItemInfo.PlayerPrefab, Socket);
             Equipped.transform.localPosition = Vector3.zero;
             Equipped.transform.localRotation = Quaternion.identity;
             EquipedInfo = worldItemInfo;
             ItemId = worldItemInfo.id;
-            GameEventsManager.instance.inputEvents.Equip();
+            GameEventsManager.instance.itemEvents.EquipItem(EquipedInfo);
             Debug.Log($"ItemController : {EquipedInfo.Label} equipped");
         }
         else Debug.Log("ItemController : no items to equip");
@@ -70,10 +58,11 @@ public class ItemController : MonoBehaviour
             Destroy(Equipped);
             GameObject droppedAsWorldItem = Instantiate(EquipedInfo.WorldPrefab, transform.position, Quaternion.identity);
             Debug.Log($"ItemController : {EquipedInfo.Label} dropped");
+            GameEventsManager.instance.itemEvents.UnequipItem(EquipedInfo);
             Equipped = null;
             EquipedInfo = null;
             ItemId = null;
-            GameEventsManager.instance.inputEvents.Unequip();
+            
 
         }
         else Debug.Log("ItemController : nothing to unequip");

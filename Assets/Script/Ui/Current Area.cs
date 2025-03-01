@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum CurrentArea
+public enum GameArea
 {
     HOME_OUTSIDE,
     HOME_INSIDE,

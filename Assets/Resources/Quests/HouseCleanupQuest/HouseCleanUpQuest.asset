@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b57e2544ed0fc40ac4f3cc80ff2bc7, type: 3}
+  m_Name: HouseCleanUpQuest
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: HouseCleanUpQuest
+  displayName: 
+  questPrerequisites: []
+  questStepPrefabs:
+  - {fileID: 5204379369994783318, guid: 1df1ad90dbef8cf4f8336decd18d22e1, type: 3}
+  - {fileID: 1061682340977528546, guid: f131c921d75128d488e9c55041f1f487, type: 3}
+  staminaUpgradeReward: 0
