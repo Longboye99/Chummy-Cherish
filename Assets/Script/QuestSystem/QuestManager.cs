@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class QuestManager : MonoBehaviour
 {
     private Dictionary<string, Quest> questMap;
+    public TextMeshProUGUI questDisplay;
 
     private void Awake()
     {
@@ -39,6 +41,7 @@ public class QuestManager : MonoBehaviour
             if(quest.state == QuestState.REQUIREMENTS_NOT_MET && CheckRequirementsMet(quest))
             {
                 ChangeQuestState(quest.info.id, QuestState.CAN_START);
+                questDisplay.text = "Can Start Quest" + quest.info.id;
             }
         }
     }
@@ -49,6 +52,8 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestById(id);
         quest.InstantiateCurrentQuestStep(this.transform);
         ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS);
+        questDisplay.text = "Current Quest: " + id;
+
     }
 
     private void AdvanceQuest(string id)
@@ -74,6 +79,8 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestById(id);
         ClaimRewards(quest);
         ChangeQuestState(quest.info.id, QuestState.FINISHED);
+        questDisplay.text = "";
+
     }
 
     private void ClaimRewards(Quest quest)

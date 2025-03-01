@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: HouseCleanUpQuest
   displayName: 
+  description: 
   questPrerequisites: []
   questStepPrefabs:
   - {fileID: 5204379369994783318, guid: 1df1ad90dbef8cf4f8336decd18d22e1, type: 3}

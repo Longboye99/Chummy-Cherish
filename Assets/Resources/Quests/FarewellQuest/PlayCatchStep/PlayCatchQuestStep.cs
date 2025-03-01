@@ -8,9 +8,8 @@ public class PlayCatchQuestStep : QuestStep
     private void OnEnable()
     {
         GameEventsManager.instance.itemEvents.onEquipItem += EquipItem;    
-        GameObject luckyBall =  Instantiate(luckyBallPrefab, this.transform.position, Quaternion.identity);
+        Instantiate(luckyBallPrefab, this.transform.position, Quaternion.identity);
         Debug.Log("Spawned quest item: " + luckyBallPrefab.name);
-        GameEventsManager.instance.playerEvents.SetTargetSmell(luckyBall);
         
     }
 

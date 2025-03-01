@@ -10,6 +10,9 @@ public class QuestInfoSO : ScriptableObject
     [Header("General")]
     public string displayName;
 
+    [Header("Description")]
+    public string description;
+
     [Header("Requirement")]
     public QuestInfoSO[] questPrerequisites;
 

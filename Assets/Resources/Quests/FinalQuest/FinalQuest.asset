@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: FinalQuest
   displayName: 
+  description: 
   questPrerequisites:
   - {fileID: 11400000, guid: c2d3102967d6f304996c503d0ad80baf, type: 2}
   - {fileID: 11400000, guid: d9889cbf7da5737498fe1b9f458749c5, type: 2}

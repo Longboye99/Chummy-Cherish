@@ -28,6 +28,7 @@ public class DayNightCycle : MonoBehaviour
     private void Start()
     {
         volume = postProcessing.GetComponent<Volume>();
+        lights = GameObject.FindGameObjectsWithTag("Light");
         currentTick = defaultTick;
     }
 
