@@ -53,9 +53,9 @@ public class PlayerManager : MonoBehaviour
         currentStamina = currentStamina - smellStaminaUse;
     }
 
-    private void Interact()
+    private void Interact(InputEventContext inputEventContext)
     {
-        if (respawnPoint.GetComponent<SleepingArea>().playerIsNear)
+        if (respawnPoint.GetComponent<SleepingArea>().playerIsNear && inputEventContext.Equals(InputEventContext.DEFAULT))
         {
             isSleeping = true;
             GameEventsManager.instance.playerEvents.DisablePlayerMovement();

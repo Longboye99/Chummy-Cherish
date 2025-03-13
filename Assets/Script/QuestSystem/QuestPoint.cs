@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(Collider2D))]
@@ -12,8 +14,24 @@ public class QuestPoint : MonoBehaviour
     [SerializeField] private bool startInteract = true;
     [SerializeField] private bool finishInteract = true;
 
+    [Header("Actor Info")]
+    public float actorMoveSpeed;
+    private List<DialogueLine> currentCutscene;
+
+    [Header("Starting Cutscene")]
+    [SerializeField]
+    private List<DialogueLine> startingDialogueLine = new List<DialogueLine>();
+
+    [Header("Finish Cutsceene")]
+    [SerializeField]
+    private List<DialogueLine> finishingDialogueLine = new List<DialogueLine>();
+
     private bool playerIsNear = false;
+    private bool cutsceneIsPlaying = false;
+    private bool isStartingDialogue = false;
     private string questId;
+    private int dialogueIndex = 0;
+    private GameObject currentDialogueBox;
     private QuestState currentQuestState;
     private QuestIcon questIcon;
 
@@ -37,19 +55,43 @@ public class QuestPoint : MonoBehaviour
     }
 
     //To-do Add interact with this quest point
-    private void Interact()
+    private void Interact(InputEventContext inputEventContext)
     {
-        if(!playerIsNear)
+        if (!inputEventContext.Equals(InputEventContext.DIALOGUE))
         {
-            return;
+            if (!playerIsNear)
+            {
+                return;
+            }
+            if (currentQuestState.Equals(QuestState.CAN_START) && startPoint && startInteract)
+            {
+                if (startingDialogueLine.Count > 0)
+                {
+                    StartCutscene(startingDialogueLine);
+                    isStartingDialogue = true;
+                }
+                else
+                {
+                    GameEventsManager.instance.questEvents.StartQuest(questId);
+                }
+            }
+            else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint && finishInteract)
+            {
+                if (finishingDialogueLine.Count > 0)
+                {
+                    StartCutscene(finishingDialogueLine);
+                }
+                else
+                {
+                    GameEventsManager.instance.questEvents.FinishQuest(questId);
+                }
+            }
         }
-        if(currentQuestState.Equals(QuestState.CAN_START) && startPoint && startInteract) 
+        
+        if (cutsceneIsPlaying && inputEventContext.Equals(InputEventContext.DIALOGUE))
         {
-            GameEventsManager.instance.questEvents.StartQuest(questId);
-        }
-        else if(currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint && finishInteract)
-        {
-            GameEventsManager.instance.questEvents.FinishQuest(questId);
+            AdvanceOrFinishCutscene(currentCutscene);
+            Debug.Log("Pressed Advance Cutscene");
         }
     }
 
@@ -90,5 +132,74 @@ public class QuestPoint : MonoBehaviour
             }
             
         }
+    }
+
+    private void StartCutscene(List<DialogueLine> dialogueLines)
+    {
+        GameEventsManager.instance.playerEvents.DisablePlayerMovement();
+        GameEventsManager.instance.inputEvents.ChangeInputEventContext(InputEventContext.DIALOGUE);
+        questIcon.gameObject.SetActive(false);
+        cutsceneIsPlaying = true;
+        dialogueIndex = 0;
+        currentCutscene = dialogueLines;
+        //GameEventsManager.instance.cutsceneEvents.StartCutscene();
+        Debug.Log("Starting Cutscene");
+        StartCoroutine(DisplayCutscene(currentCutscene, dialogueIndex));
+    }
+
+    private void AdvanceOrFinishCutscene(List<DialogueLine> dialogueLines)
+    {
+        Destroy(currentDialogueBox.gameObject);
+        dialogueIndex++;
+        if (dialogueIndex >= dialogueLines.Count) 
+        {
+            FinishCutscene();
+        }
+        else
+        {
+            Debug.Log("Advance Cutscene");
+            StartCoroutine(DisplayCutscene(dialogueLines, dialogueIndex));
+        }
+    }
+
+    private void FinishCutscene()
+    {
+        GameEventsManager.instance.playerEvents.EnablePlayerMovement();
+        GameEventsManager.instance.inputEvents.ChangeInputEventContext(InputEventContext.DEFAULT);
+        questIcon.gameObject.SetActive(true);
+        cutsceneIsPlaying = false;
+        Debug.Log("Cutscene Finished");
+        if(isStartingDialogue)
+        {
+            GameEventsManager.instance.questEvents.StartQuest(questId);
+        }
+        else if(!isStartingDialogue)
+        {
+            GameEventsManager.instance.questEvents.FinishQuest(questId);
+        }
+        //GameEventsManager.instance.cutsceneEvents.FinishCutscene();
+    }
+
+    private IEnumerator DisplayCutscene(List<DialogueLine> dialogueLines, int i)
+    {
+        if (dialogueLines[i].isMovementEvent)
+        {
+            yield return StartCoroutine(MoveActor(dialogueLines[i].actor, dialogueLines[i].endPosition));
+            Debug.Log("Moving: " + dialogueLines[i].actor);
+            AdvanceOrFinishCutscene(dialogueLines);
+        }
+        if (dialogueLines[i].isDialogueEvent)
+        {
+            currentDialogueBox = Instantiate(dialogueLines[i].dialogueBoxPrefab, dialogueLines[i].dialoguePosition.transform.position, Quaternion.identity);
+            Debug.Log("Displaying dialogue at index: " + i);
+        }     
+    }
+
+    private IEnumerator MoveActor(GameObject actor, Vector2 endpos)
+    {
+        
+
+        yield return StartCoroutine(actor.GetComponent<NpcMovementController>().MoveNpc(endpos)); ;
+
     }
 }

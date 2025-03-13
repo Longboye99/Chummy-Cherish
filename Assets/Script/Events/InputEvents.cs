@@ -38,12 +38,12 @@ public class InputEvents
         }
     }
 
-    public event Action onInteract;
+    public event Action<InputEventContext> onInteract;
     public void Interact()
     {
         if (onInteract != null)
         {
-            onInteract();
+            onInteract(this.inputEventContext);
         }
     }
 
