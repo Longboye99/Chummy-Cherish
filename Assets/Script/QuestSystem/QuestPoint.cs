@@ -251,6 +251,6 @@ public class QuestPoint : MonoBehaviour
 
     private void TeleportActor(GameObject actor, Vector2 endpos)
     {
-        actor.GetComponent<NpcMovementController>().MoveNpc(endpos);
+        actor.GetComponent<NpcMovementController>().TeleportNpc(endpos);
     }
 }

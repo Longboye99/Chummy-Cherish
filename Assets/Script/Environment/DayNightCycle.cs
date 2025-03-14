@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using TMPro;
+using System.Linq;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class DayNightCycle : MonoBehaviour
     public TextMeshProUGUI timeDisplay;
 
     public bool activateLights;
-    public GameObject[] lights;
+    private GameObject[] lights;
 
     private void OnEnable()
     {
@@ -29,6 +30,7 @@ public class DayNightCycle : MonoBehaviour
     {
         volume = postProcessing.GetComponent<Volume>();
         lights = GameObject.FindGameObjectsWithTag("Light");
+        Debug.Log("Found Light: " + lights.Length);
         currentTick = defaultTick;
     }
 

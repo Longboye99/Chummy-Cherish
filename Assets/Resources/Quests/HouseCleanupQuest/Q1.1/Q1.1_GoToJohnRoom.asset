@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b57e2544ed0fc40ac4f3cc80ff2bc7, type: 3}
-  m_Name: Q1.1_WalkToJohnQuest
+  m_Name: Q1.1_GoToJohnRoom
   m_EditorClassIdentifier: 
-  <id>k__BackingField: Q1.1_WalkToJohnQuest
+  <id>k__BackingField: Q1.1_GoToJohnRoom
   displayName: 
   description: 
-  questPrerequisites: []
-  questStepPrefabs: []
+  questPrerequisites:
+  - {fileID: 11400000, guid: 6345f7d9a7cc0994b9da40ea993251d1, type: 2}
+  questStepPrefabs:
+  - {fileID: 4729095885835842824, guid: 0e05d99cd92b871438a4a9d6c11c2812, type: 3}
   staminaUpgradeReward: 0
