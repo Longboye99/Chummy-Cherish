@@ -51,14 +51,11 @@ public class NpcMovementController : MonoBehaviour
         }
         movementDisabled = true;
         transform.position = finalPosition;
-        /*while (Vector2.Distance(this.transform.position, finalPosition) > 0.2f)
-        {
-            float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, endpos, step);
-            yield return null;
-        }
-        transform.position = endpos;*/
+    }
 
+    public void TeleportNpc(Vector2 teleportPos)
+    {
+        transform.position = teleportPos;
     }
 
     private void UpdateAnimation()
