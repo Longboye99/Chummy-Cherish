@@ -45,7 +45,7 @@ public class NpcMovementController : MonoBehaviour
         Vector2 moveDir = (finalPosition - (Vector2)rb.transform.position);
         velocity = moveDir.normalized * moveSpeed;
 
-        while (Vector2.Distance(this.transform.position, finalPosition) > 0.2f)
+        while (Vector2.Distance(this.transform.position, finalPosition) > 0.3f)
         {
             yield return null;
         }

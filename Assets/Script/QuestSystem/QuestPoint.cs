@@ -29,6 +29,7 @@ public class QuestPoint : MonoBehaviour
 
     private bool playerIsNear = false;
     private bool cutsceneIsPlaying = false;
+    private bool currentDialogueOnGoing = false;
     private bool isStartingDialogue = false;
     private string questId;
     private int dialogueIndex = 0;
@@ -103,7 +104,7 @@ public class QuestPoint : MonoBehaviour
             }
         }
         
-        if (cutsceneIsPlaying && inputEventContext.Equals(InputEventContext.DIALOGUE))
+        if (cutsceneIsPlaying && inputEventContext.Equals(InputEventContext.DIALOGUE) && !currentDialogueOnGoing)
         {
             AdvanceOrFinishCutscene(currentCutscene);
             Debug.Log("Pressed Advance Cutscene");
@@ -225,23 +226,31 @@ public class QuestPoint : MonoBehaviour
 
     private IEnumerator DisplayCutscene(List<DialogueLine> dialogueLines, int i)
     {
+        currentDialogueOnGoing = true;
         if (dialogueLines[i].isMovementEvent)
         {
             yield return StartCoroutine(MoveActor(dialogueLines[i].actor, dialogueLines[i].endPosition));
             Debug.Log("Moving: " + dialogueLines[i].actor);
+            currentDialogueOnGoing = false;
             AdvanceOrFinishCutscene(dialogueLines);
+
         }
         if (dialogueLines[i].isDialogueEvent)
         {
             currentDialogueBox = Instantiate(dialogueLines[i].dialogueBoxPrefab, dialogueLines[i].dialoguePosition.transform.position, Quaternion.identity);
             Debug.Log("Displaying dialogue at index: " + i);
-        }     
+            currentDialogueOnGoing = false;
+
+        }
         if (dialogueLines[i].isTeleportEvent)
         {
             TeleportActor(dialogueLines[i].actor, dialogueLines[i].teleportPos);
             Debug.Log("Teleport: " + dialogueLines[i].actor);
             AdvanceOrFinishCutscene(dialogueLines);
+            currentDialogueOnGoing = false;
         }
+        currentDialogueOnGoing = false;
+
     }
 
     private IEnumerator MoveActor(GameObject actor, Vector2 endpos)
