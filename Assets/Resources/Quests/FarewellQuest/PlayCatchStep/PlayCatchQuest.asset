@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Play Catch
   description: 
   questPrerequisites:
-  - {fileID: 11400000, guid: 6b046c9385e8b4e4aa665de214612663, type: 2}
+  - {fileID: 11400000, guid: 8e3d5938e3c1bc641bb5b76d783ccf16, type: 2}
   questStepPrefabs:
   - {fileID: 5653926635783391720, guid: ec8eafa77aa79824aa4dd4ad50aff2cc, type: 3}
   staminaUpgradeReward: 10

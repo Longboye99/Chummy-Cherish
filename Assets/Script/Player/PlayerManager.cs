@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,13 +6,14 @@ public class PlayerManager : MonoBehaviour
 {
     public float maxStamina;
     private float currentStamina;
-    [SerializeField] float staminaDrain;
+    public float staminaDrain;
     [SerializeField] float smellStaminaUse;
     [SerializeField] Slider staminaSlider;
     [SerializeField] GameObject respawnPoint;
     public GameObject spawnPointCam;
     private GameObject player;
     private Animator animator;
+    [SerializeField] private Animator transitionAnim;
     private bool isSleeping = false;
 
     private void OnEnable()
@@ -120,7 +122,12 @@ public class PlayerManager : MonoBehaviour
     
     private void Fainted()
     {
-        if(!isSleeping)
+        GameEventsManager.instance.playerEvents.DisablePlayerMovement();
+        animator.SetBool("IsSleeping", isSleeping);
+        transitionAnim.SetTrigger("end");
+        transitionAnim.SetTrigger("start");
+
+        if (!isSleeping)
         {
             spawnPointCam.SetActive(true);
             player.GetComponent<Rigidbody2D>().transform.position = respawnPoint.transform.position;
@@ -130,5 +137,7 @@ public class PlayerManager : MonoBehaviour
         {
             currentStamina = maxStamina;
         }
+        GameEventsManager.instance.playerEvents.EnablePlayerMovement();
     }
+
 }

@@ -55,4 +55,13 @@ public class InputEvents
             onSmelling();
         }
     }
+
+    public event Action onBarking;
+    public void Barking()
+    {
+        if (onBarking != null)
+        {
+            onBarking();
+        }
+    }
 }

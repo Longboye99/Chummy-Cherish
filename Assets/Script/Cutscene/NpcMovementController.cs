@@ -11,7 +11,7 @@ public class NpcMovementController : MonoBehaviour
     public Vector2 finalPosition;
     public float distance;
 
-    private bool movementDisabled = true;
+    private bool movementDisabled = false;
     private float speed;
 
     private void Awake()
@@ -19,11 +19,15 @@ public class NpcMovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         velocity = Vector2.zero;
+        if (!gameObject.CompareTag("Player"))
+        {
+            movementDisabled = true;
+        }
     }
 
     private void Update()
     {
-        UpdateAnimation();
+        if(animator != null && !gameObject.CompareTag("Player")) UpdateAnimation();    
     }
 
     private void FixedUpdate()
@@ -32,7 +36,7 @@ public class NpcMovementController : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
         }
-        else
+        else if(!gameObject.CompareTag("Player"))
         {
             rb.linearVelocity = velocity;
         }
@@ -49,7 +53,15 @@ public class NpcMovementController : MonoBehaviour
         {
             yield return null;
         }
-        movementDisabled = true;
+        if (gameObject.CompareTag("Player"))
+        {
+            movementDisabled = false;
+        }
+        else
+        {
+            movementDisabled = true;
+        }
+        
         transform.position = finalPosition;
     }
 
@@ -65,13 +77,13 @@ public class NpcMovementController : MonoBehaviour
         if (velocity.x != 0 || velocity.y != 0)
         {
 
-            animator.SetFloat("Velocity_x", velocity.x);
-            animator.SetFloat("Velocity_y", velocity.y);
-            animator.SetFloat("Speed", speed);
+            animator.SetFloat("velocity_x", velocity.x);
+            animator.SetFloat("velocity_y", velocity.y);
+            animator.SetFloat("speed", speed);
         }
         else
         {
-            animator.SetFloat("Speed", 0);
+            animator.SetFloat("speed", 0);
         }
     }
 }

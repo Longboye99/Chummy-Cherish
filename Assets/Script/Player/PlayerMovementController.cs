@@ -3,14 +3,14 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     [Header("Config")]
-    [SerializeField] private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
 
     private Rigidbody2D rb;
     private Animator animator;
     public Vector2 velocity = Vector2.zero;
 
     private bool movementDisabled = false;
-    private float speed;
+    public float speed;
 
     private void Awake()
     {

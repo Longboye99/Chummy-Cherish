@@ -135,6 +135,74 @@ MonoBehaviour:
   targetSmell: {fileID: 0}
   smellPointer: {fileID: 3961401931301630847}
   hideDistance: 10
+--- !u!1 &3894155462398397013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6831223167660844945}
+  - component: {fileID: 8157039995793733945}
+  m_Layer: 0
+  m_Name: BarkingArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6831223167660844945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894155462398397013}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.024, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3491641821960931289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8157039995793733945
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894155462398397013}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &3961401931301630847
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +352,7 @@ GameObject:
   - component: {fileID: 5476196778461679844}
   - component: {fileID: 2598499445064405956}
   - component: {fileID: 7281408312441168381}
+  - component: {fileID: 6046128767084490823}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Player
@@ -307,6 +376,7 @@ Transform:
   - {fileID: 8187110504425643111}
   - {fileID: 332433691351556313}
   - {fileID: 5233980175522987501}
+  - {fileID: 6831223167660844945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4139106850723947045
@@ -425,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5deb0996aee25ad4694387ccb79e1e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 40
   velocity: {x: 0, y: 0}
 --- !u!61 &7281408312441168381
 BoxCollider2D:
@@ -473,3 +543,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.21, y: 0.1298023}
   m_EdgeRadius: 0
+--- !u!114 &6046128767084490823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712223744473526148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8babf4d552f016c469b45724cc075a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  velocity: {x: 0, y: 0}
+  finalPosition: {x: 0, y: 0}
+  distance: 0

@@ -42,4 +42,12 @@ public class InputManager : MonoBehaviour
             GameEventsManager.instance.inputEvents.Smelling();
         }
     }
+
+    public void Bark(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            GameEventsManager.instance.inputEvents.Barking();
+        }
+    }
 }
