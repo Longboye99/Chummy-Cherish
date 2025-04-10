@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class CutsceneEvents : MonoBehaviour
+public class CutsceneEvents
 {
     public event Action onStartCutscene;
     public void StartCutscene()

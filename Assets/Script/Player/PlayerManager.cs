@@ -16,10 +16,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Animator transitionAnim;
     private bool isSleeping = false;
 
+    [Header("Sfx")]
+    [SerializeField] private AudioClip[] barkingSounds;
+
     private void OnEnable()
     {
         GameEventsManager.instance.inputEvents.onSmelling += Smelling;
         GameEventsManager.instance.inputEvents.onInteract += Interact;
+        GameEventsManager.instance.inputEvents.onBarking += Barking;
         GameEventsManager.instance.inputEvents.onMovePressed += MovePressed;
         GameEventsManager.instance.playerEvents.onFainted += Fainted;
         GameEventsManager.instance.playerEvents.onIncreaseStamina += IncreaseStamina;
@@ -29,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     {
         GameEventsManager.instance.inputEvents.onSmelling -= Smelling;
         GameEventsManager.instance.inputEvents.onInteract -= Interact;
+        GameEventsManager.instance.inputEvents.onBarking -= Barking;
         GameEventsManager.instance.inputEvents.onMovePressed -= MovePressed;
         GameEventsManager.instance.playerEvents.onFainted -= Fainted;
         GameEventsManager.instance.playerEvents.onIncreaseStamina -= IncreaseStamina;
@@ -140,4 +145,9 @@ public class PlayerManager : MonoBehaviour
         GameEventsManager.instance.playerEvents.EnablePlayerMovement();
     }
 
+    private void Barking()
+    {
+        Debug.Log("Bark");
+        SfxManager.Instance.PlayRandomSfxClip(barkingSounds, player.GetComponent<Rigidbody2D>().transform, 1f);
+    }
 }

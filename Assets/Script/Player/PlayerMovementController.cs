@@ -12,6 +12,7 @@ public class PlayerMovementController : MonoBehaviour
     private bool movementDisabled = false;
     public float speed;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

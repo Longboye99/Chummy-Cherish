@@ -16,10 +16,7 @@ MonoBehaviour:
   displayName: 
   description: 
   questPrerequisites:
-  - {fileID: 11400000, guid: c2d3102967d6f304996c503d0ad80baf, type: 2}
   - {fileID: 11400000, guid: d9889cbf7da5737498fe1b9f458749c5, type: 2}
-  - {fileID: 11400000, guid: b74aeb0717700d84a93936245488e4c1, type: 2}
   questStepPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3547702451745156365, guid: f21cd66dadd98d647afbb3fd4d3540e2, type: 3}
   staminaUpgradeReward: 0

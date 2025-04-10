@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Item
   - Light
+  - Trash
+  - Janiter
   layers:
   - Default
   - TransparentFX

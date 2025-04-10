@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb62dada9c0869c4ea5c646dcbfbb378, type: 3}
+  m_Name: Paper
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: Paper
+  Label: player-facing name of this object
+  PlayerPrefab: {fileID: 3543976293674390071, guid: 7b64e15044a3c8d4abea85476d7e0076, type: 3}
+  WorldPrefab: {fileID: 3543976293674390071, guid: 3919ea001b8c9c3419ae0007064a2777, type: 3}
+  color: 0
+  isFood: 0
+  staminaAmount: 0

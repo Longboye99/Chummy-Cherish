@@ -15,6 +15,8 @@ MonoBehaviour:
   <id>k__BackingField: GotLostStep
   displayName: 
   description: 
-  questPrerequisites: []
-  questStepPrefabs: []
+  questPrerequisites:
+  - {fileID: 11400000, guid: b74aeb0717700d84a93936245488e4c1, type: 2}
+  questStepPrefabs:
+  - {fileID: 4383710380466020534, guid: f67dfb5988d1be840a3623b9b0258dee, type: 3}
   staminaUpgradeReward: 0

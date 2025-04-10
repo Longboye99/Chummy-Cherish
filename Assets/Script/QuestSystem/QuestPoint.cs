@@ -7,6 +7,7 @@ public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
     [SerializeField] private QuestInfoSO questInfoForPoint;
+    [SerializeField] private QuestIcon questIcon;
 
     [Header("Config")]
     [SerializeField] private bool startPoint = true;
@@ -35,12 +36,12 @@ public class QuestPoint : MonoBehaviour
     private int dialogueIndex = 0;
     private GameObject currentDialogueBox;
     private QuestState currentQuestState;
-    private QuestIcon questIcon;
+    
 
     private void Awake()
     {
         questId = questInfoForPoint.id;
-        questIcon = GetComponentInChildren<QuestIcon>();
+        //questIcon = GetComponentInChildren<QuestIcon>();
     }
 
     private void OnEnable()
@@ -96,6 +97,8 @@ public class QuestPoint : MonoBehaviour
                 if (finishingDialogueLine.Count > 0)
                 {
                     StartCutscene(finishingDialogueLine);
+                    isStartingDialogue = false;
+
                 }
                 else
                 {
@@ -107,7 +110,7 @@ public class QuestPoint : MonoBehaviour
         if (cutsceneIsPlaying && inputEventContext.Equals(InputEventContext.DIALOGUE) && !currentDialogueOnGoing)
         {
             AdvanceOrFinishCutscene(currentCutscene);
-            Debug.Log("Pressed Advance Cutscene");
+            //Debug.Log("Pressed Advance Cutscene");
         }
     }
 
@@ -134,6 +137,8 @@ public class QuestPoint : MonoBehaviour
                 if (finishingDialogueLine.Count > 0)
                 {
                     StartCutscene(finishingDialogueLine);
+                    isStartingDialogue = false;
+
                 }
                 else
                 {
@@ -160,8 +165,10 @@ public class QuestPoint : MonoBehaviour
             if(questIcon != null)
             {
                 questIcon.SetState(currentQuestState, startPoint, finishPoint);
+                Debug.Log("Quest Icon" + questId + " update to state: " + currentQuestState);
+
             }
-            if(quest.state == QuestState.FINISHED)
+            if (quest.state == QuestState.FINISHED)
             {
                 Destroy(this.gameObject);
             }
@@ -198,7 +205,7 @@ public class QuestPoint : MonoBehaviour
         }
         else
         {
-            Debug.Log("Advance Cutscene");
+            //Debug.Log("Advance Cutscene");
             StartCoroutine(DisplayCutscene(dialogueLines, dialogueIndex));
         }
     }
@@ -230,7 +237,7 @@ public class QuestPoint : MonoBehaviour
         if (dialogueLines[i].isMovementEvent)
         {
             yield return StartCoroutine(MoveActor(dialogueLines[i].actor, dialogueLines[i].endPosition));
-            Debug.Log("Moving: " + dialogueLines[i].actor);
+            //Debug.Log("Moving: " + dialogueLines[i].actor);
             currentDialogueOnGoing = false;
             AdvanceOrFinishCutscene(dialogueLines);
 
@@ -238,14 +245,14 @@ public class QuestPoint : MonoBehaviour
         if (dialogueLines[i].isDialogueEvent)
         {
             currentDialogueBox = Instantiate(dialogueLines[i].dialogueBoxPrefab, dialogueLines[i].dialoguePosition.transform.position, Quaternion.identity);
-            Debug.Log("Displaying dialogue at index: " + i);
+            //Debug.Log("Displaying dialogue at index: " + i);
             currentDialogueOnGoing = false;
 
         }
         if (dialogueLines[i].isTeleportEvent)
         {
             TeleportActor(dialogueLines[i].actor, dialogueLines[i].teleportPos);
-            Debug.Log("Teleport: " + dialogueLines[i].actor);
+            //Debug.Log("Teleport: " + dialogueLines[i].actor);
             AdvanceOrFinishCutscene(dialogueLines);
             currentDialogueOnGoing = false;
         }
